@@ -1,0 +1,118 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "mwqcodex/moonbitSPC"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn capability(Array[Double], Specification) -> CapabilityResult
+
+pub fn detect_western_electric(Array[Double], mean~ : Double, sigma~ : Double) -> Array[RuleViolation]
+
+pub fn quality_report(Array[Subgroup], specification? : Specification) -> ReportResult
+
+pub fn summarize(Array[Subgroup], specification? : Specification) -> SummaryResult
+
+// Errors
+
+// Types and methods
+pub(all) struct Capability {
+  mean : Double
+  standard_deviation : Double
+  cp : Double
+  cpk : Double
+  pp : Double
+  ppk : Double
+  out_of_spec_rate : Double
+} derive(ToJson, @debug.Debug)
+
+pub(all) enum CapabilityResult {
+  CapabilityOk(Capability)
+  CapabilityInvalidInput(message~ : String)
+} derive(@debug.Debug)
+
+pub(all) struct ChartPoint {
+  value : Double
+  center : Double
+  upper : Double
+  lower : Double
+  out_of_control : Bool
+} derive(ToJson, @debug.Debug)
+
+pub(all) enum ChartResult {
+  ChartOk(ControlChart)
+  ChartInvalidInput(message~ : String)
+} derive(@debug.Debug)
+
+pub(all) struct ControlChart {
+  kind : String
+  center : Double
+  points : Array[ChartPoint]
+} derive(ToJson, @debug.Debug)
+pub fn ControlChart::c(Array[Int], Int) -> ChartResult
+pub fn ControlChart::imr(Array[Double]) -> ChartResult
+pub fn ControlChart::np(Array[Int], Int) -> ChartResult
+pub fn ControlChart::p(Array[Int], Array[Int]) -> ChartResult
+pub fn ControlChart::u(Array[Int], Array[Int]) -> ChartResult
+pub fn ControlChart::xbar_r(Array[Array[Double]]) -> ChartResult
+pub fn ControlChart::xbar_s(Array[Array[Double]]) -> ChartResult
+
+pub(all) struct QualityReport {
+  summary : Summary
+  capability : Capability?
+  chart : ControlChart?
+  violations : Array[RuleViolation]
+} derive(ToJson, @debug.Debug)
+
+pub(all) enum ReportResult {
+  ReportOk(QualityReport)
+  ReportInvalidInput(message~ : String)
+} derive(@debug.Debug)
+
+pub(all) struct RuleViolation {
+  rule : Int
+  start_index : Int
+  indices : Array[Int]
+  message : String
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct Specification {
+  lower : Double
+  upper : Double
+} derive(ToJson, @debug.Debug)
+pub fn Specification::new(lower~ : Double, upper~ : Double) -> Self
+
+pub(all) struct Subgroup {
+  values : Array[Double]
+  batch : String
+  equipment : String
+  tool : String
+  operator : String
+  window : String
+} derive(ToJson, @debug.Debug)
+pub fn Subgroup::new(values~ : Array[Double], batch~ : String, equipment~ : String, tool~ : String, operator~ : String, window~ : String) -> Self
+
+pub(all) struct Summary {
+  count : Int
+  mean : Double
+  standard_deviation : Double
+  minimum : Double
+  maximum : Double
+  out_of_spec_rate : Double
+  batch : String
+  equipment : String
+  tool : String
+  operator : String
+  window : String
+} derive(ToJson, @debug.Debug)
+
+pub(all) enum SummaryResult {
+  Ok(Summary)
+  InvalidInput(message~ : String)
+} derive(@debug.Debug)
+
+// Type aliases
+
+// Traits
+
