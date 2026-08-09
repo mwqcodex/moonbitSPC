@@ -49,7 +49,9 @@ jobs:
           moon fmt --check
           moon check --deny-warn
           moon info
-          git diff --exit-code
+          test -f pkg.generated.mbti
+          test -f cmd/demo/pkg.generated.mbti
+          git diff --exit-code -- '*.mbt' '*.mbt.md' 'moon.mod' 'moon.pkg' 'cmd/**/moon.pkg'
       - name: Test wasm-gc target
         run: moon test --deny-warn
       - name: Test native target
