@@ -6,17 +6,149 @@ import {
 }
 
 // Values
+pub fn actionable_alert_count(Array[QualityAlert]) -> Int
+
+pub fn alert_codes(Array[QualityAlert]) -> Array[String]
+
+pub fn autocorrelation(Array[Double], Int) -> Double?
+
+pub fn baseline_from(Array[Double]) -> Baseline
+
 pub fn capability(Array[Double], Specification) -> CapabilityResult
+
+pub fn clipped(Array[Double], Double, Double) -> Array[Double]?
+
+pub fn compare_windows(QualityWindow, QualityWindow, Double) -> QualityAlert?
+
+pub fn confidence_interval_95(Array[Double]) -> (Double, Double)?
+
+pub fn correlation(Array[Double], Array[Double]) -> Double?
+
+pub fn covariance(Array[Double], Array[Double]) -> Double?
+
+pub fn critical_alert_count(Array[QualityAlert]) -> Int
+
+pub fn cusum(Array[Double], target~ : Double, allowance~ : Double, decision~ : Double) -> Array[Double]
+
+pub fn defect_rate(Array[Double], Specification) -> Double?
 
 pub fn detect_western_electric(Array[Double], mean~ : Double, sigma~ : Double) -> Array[RuleViolation]
 
+pub fn detrend(Array[Double]) -> Array[Double]?
+
+pub fn direction_changes(Array[Double]) -> Int
+
+pub fn drift_score(Array[Double], Baseline, threshold~ : Double) -> Array[DriftPoint]
+
+pub fn evaluate_window(QualityWindow) -> Array[QualityAlert]
+
+pub fn evaluate_windows(Array[QualityWindow]) -> Array[QualityAlert]
+
+pub fn ewma(Array[Double], lambda~ : Double, initial~ : Double) -> Array[Double]
+
+pub fn filter_shifted_windows(Array[QualityWindow], Double, Double) -> Array[QualityWindow]
+
+pub fn first_actionable_window(Array[QualityWindow]) -> Int?
+
+pub fn forecast(Array[Double], Int) -> Array[Double]?
+
+pub fn frequencies(Array[Int]) -> Array[Frequency]
+
+pub fn geometric_mean(Array[Double]) -> Double?
+
+pub fn harmonic_mean(Array[Double]) -> Double?
+
+pub fn histogram(Array[Double], Int) -> Array[HistogramBin]?
+
+pub fn iqr(Array[Double]) -> Double?
+
+pub fn iqr_outliers(Array[Double], Double) -> Array[Bool]?
+
+pub fn linear_trend(Array[Double]) -> Trend?
+
+pub fn longest_run(Array[Double], Double) -> Int
+
+pub fn mad(Array[Double]) -> Double?
+
+pub fn median(Array[Double]) -> Double?
+
+pub fn min_max_scale(Array[Double]) -> Array[Double]?
+
+pub fn moving_mean(Array[Double], Int) -> Array[Double]?
+
+pub fn moving_std(Array[Double], Int) -> Array[Double]?
+
+pub fn percentile_rank(Array[Double], Double) -> Double?
+
+pub fn pooled_standard_deviation(Array[Array[Double]]) -> Double?
+
+pub fn product_of(Array[Double]) -> Double
+
 pub fn quality_report(Array[Subgroup], specification? : Specification) -> ReportResult
 
+pub fn quantile(Array[Double], Double) -> Double?
+
+pub fn rolling_max(Array[Double], Int) -> Array[Double]?
+
+pub fn rolling_min(Array[Double], Int) -> Array[Double]?
+
+pub fn rolling_range(Array[Double], Int) -> Array[Double]?
+
+pub fn sample_uniform(Int, seed~ : Int, lower~ : Double, upper~ : Double) -> Array[Double]
+
+pub fn scorecard(Array[QualityWindow]) -> Scorecard
+
+pub fn sign_changes(Array[Double], Double) -> Int
+
+pub fn sorted_copy(Array[Double]) -> Array[Double]
+
+pub fn standard_error(Array[Double]) -> Double?
+
+pub fn subgroup(Array[Double], Int) -> Array[Array[Double]]?
+
+pub fn sum_of(Array[Double]) -> Double
+
 pub fn summarize(Array[Subgroup], specification? : Specification) -> SummaryResult
+
+pub fn trimmed(Array[Double], Double) -> Array[Double]?
+
+pub fn validate_counts(Array[Int], Array[Int]) -> Array[ValidationIssue]
+
+pub fn validate_specification(Specification) -> Array[ValidationIssue]
+
+pub fn validate_subgroups(Array[Subgroup]) -> Array[ValidationIssue]
+
+pub fn weighted_mean(Array[Double], Array[Double]) -> Double?
+
+pub fn window_deviations(Array[QualityWindow]) -> Array[Double]
+
+pub fn window_from_groups(Array[Subgroup], specification? : Specification) -> QualityWindow?
+
+pub fn window_means(Array[QualityWindow]) -> Array[Double]
+
+pub fn windows_from_values(Array[Double], Int, specification? : Specification) -> Array[QualityWindow]?
+
+pub fn winsorized(Array[Double], Double) -> Array[Double]?
+
+pub fn z_scores(Array[Double], Double, Double) -> Array[Double]?
 
 // Errors
 
 // Types and methods
+pub(all) enum AlertSeverity {
+  Info
+  Warning
+  Critical
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct Baseline {
+  center : Double
+  deviation : Double
+  lower : Double
+  upper : Double
+  count : Int
+} derive(ToJson, @debug.Debug)
+
 pub(all) struct Capability {
   mean : Double
   standard_deviation : Double
@@ -51,6 +183,8 @@ pub(all) struct ControlChart {
   points : Array[ChartPoint]
 } derive(ToJson, @debug.Debug)
 pub fn ControlChart::c(Array[Int], Int) -> ChartResult
+pub fn ControlChart::cusum(Array[Double], target~ : Double, allowance~ : Double, decision~ : Double) -> ChartResult
+pub fn ControlChart::ewma(Array[Double], lambda~ : Double, initial~ : Double, sigma~ : Double) -> ChartResult
 pub fn ControlChart::imr(Array[Double]) -> ChartResult
 pub fn ControlChart::np(Array[Int], Int) -> ChartResult
 pub fn ControlChart::p(Array[Int], Array[Int]) -> ChartResult
@@ -58,12 +192,47 @@ pub fn ControlChart::u(Array[Int], Array[Int]) -> ChartResult
 pub fn ControlChart::xbar_r(Array[Array[Double]]) -> ChartResult
 pub fn ControlChart::xbar_s(Array[Array[Double]]) -> ChartResult
 
+pub(all) struct DriftPoint {
+  index : Int
+  value : Double
+  score : Double
+  alarm : Bool
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct Frequency {
+  value : Int
+  count : Int
+  proportion : Double
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct HistogramBin {
+  lower : Double
+  upper : Double
+  count : Int
+  proportion : Double
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct QualityAlert {
+  severity : AlertSeverity
+  code : String
+  message : String
+  index : Int
+  value : Double?
+} derive(ToJson, @debug.Debug)
+
 pub(all) struct QualityReport {
   summary : Summary
   capability : Capability?
   chart : ControlChart?
   violations : Array[RuleViolation]
 } derive(ToJson, @debug.Debug)
+
+pub(all) struct QualityWindow {
+  id : String
+  values : Array[Double]
+  specification : Specification?
+} derive(ToJson, @debug.Debug)
+pub fn QualityWindow::new(id~ : String, values~ : Array[Double], specification~ : Specification?) -> Self
 
 pub(all) enum ReportResult {
   ReportOk(QualityReport)
@@ -75,6 +244,16 @@ pub(all) struct RuleViolation {
   start_index : Int
   indices : Array[Int]
   message : String
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct Scorecard {
+  observations : Int
+  windows : Int
+  alerts : Int
+  critical : Int
+  defect_rate : Double?
+  center : Double?
+  deviation : Double?
 } derive(ToJson, @debug.Debug)
 
 pub(all) struct Specification {
@@ -112,7 +291,18 @@ pub(all) enum SummaryResult {
   InvalidInput(message~ : String)
 } derive(@debug.Debug)
 
+pub(all) struct Trend {
+  slope : Double
+  intercept : Double
+  r_squared : Double
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct ValidationIssue {
+  index : Int
+  field : String
+  message : String
+} derive(ToJson, @debug.Debug)
+
 // Type aliases
 
 // Traits
-

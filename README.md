@@ -1,48 +1,72 @@
 # moonbitSPC
 
-`moonbitSPC` 是一个面向机械加工与实验质量数据的 MoonBit 统计过程控制库。它把原始测量值转换为可复现的统计摘要、控制图数据、异常规则命中和过程能力报告，方便嵌入制造质量平台、实验教学工具和检测软件。
+`moonbitSPC` is a dependency-light MoonBit library for statistical process control (SPC) in manufacturing and laboratory measurement software. It turns measured values into deterministic summaries, control-chart points, anomaly rules, capability indices, drift signals, and application-facing quality alerts.
 
-## 能做什么
+## Core capabilities
 
-- 控制图：X-bar/R、X-bar/S、I-MR、P、NP、C、U
-- 指标：均值、样本标准差、Cp、Cpk、Pp、Ppk、超差率
-- 异常检测：Western Electric 1—4 规则，返回规则编号、起点和影响索引
-- 追溯维度：批次、设备、刀具、操作员、时间窗口
-- 结果形态：纯数据结构，可由 CLI、WebAssembly 或上层 UI 自行绘图
+- Descriptive statistics: mean, sample deviation, quantiles, median, MAD, IQR, covariance, correlation, rolling windows, histograms, and confidence intervals.
+- Control charts: X-bar/R, X-bar/S, I-MR, P, NP, C, U, EWMA, and CUSUM.
+- Quality rules: Western Electric rules 1–4, IQR outliers, run length, sign changes, trend and drift scores.
+- Process capability: Cp, Cpk, Pp, Ppk, defect rate, specification validation, and pooled deviation.
+- Production pipeline helpers: traceable subgroups, input validation, window scorecards, structured alerts, deterministic simulation samples, and forecast baselines.
+- Portable output: public data structures with `Debug`/`ToJson` support; no database, plotting, or factory-protocol dependency.
 
-## 快速开始
+## Quick start
 
 ```moonbit
-let group = @moonbitSPC.Subgroup::new(
+let subgroup = @moonbitSPC.Subgroup::new(
   values=[9.8, 10.1, 10.0], batch="B-01", equipment="mill-2",
   tool="T-07", operator="op-a", window="2026-08-09T10:00Z",
 )
 match @moonbitSPC.quality_report(
-  [group], specification=@moonbitSPC.Specification::new(lower=9.0, upper=11.0),
+  [subgroup], specification=@moonbitSPC.Specification::new(lower=9.0, upper=11.0),
 ) {
-  @moonbitSPC.ReportOk(report) => println(report.summary.mean.to_string())
+  @moonbitSPC.ReportOk(report) => println("mean=\{report.summary.mean}")
   @moonbitSPC.ReportInvalidInput(message~) => println(message)
 }
 ```
 
-运行测试：
+The repository contains an executable example in `cmd/demo`.
+
+## CLI
 
 ```text
-moon fmt
+moon run cmd/demo
 moon check --deny-warn
-moon info
 moon test --deny-warn
 moon test --target native --deny-warn
 ```
 
-## 工程边界
+The library is intended to be embedded in a MoonBit CLI, service, WebAssembly module, or teaching notebook. It does not read files or print analysis results from the core API; callers own transport and presentation.
 
-当前版本专注于批量、离线、确定性的统计计算，不负责数据库、实时传输、图形绘制或具体工厂协议。后续可在不破坏核心数据结构的前提下增加多变量 SPC、漂移检测、刀具寿命预测、流式输入和 JSON/CSV 适配器。
+## Architecture
 
-## 设计说明
+The root package is organized by responsibility:
 
-库不依赖外部 Mooncakes 包，便于 wasm-gc/native 双目标复现。所有算法都返回结构化结果而非打印文本；错误输入通过结果枚举显式返回。控制图常数与假设写在 API 文档和测试中，使用者可以替换上层估计方法。
+| Area | Files | Responsibility |
+| --- | --- | --- |
+| Data model | `types.mbt`, `summary.mbt` | Traceability dimensions and descriptive summaries |
+| Charts | `charts.mbt`, `extended.mbt` | Classical, EWMA, and CUSUM chart points |
+| Rules | `rules.mbt`, `advanced.mbt`, `analytics.mbt` | Western Electric and robust/run diagnostics |
+| Capability | `capability.mbt` | Specification-based process indices |
+| Pipeline | `pipeline.mbt`, `report.mbt` | Window evaluation, alerts, and reports |
 
-## 许可证
+All algorithms are deterministic and operate on owned arrays. Invalid domain inputs return explicit `Option` or result values rather than silently producing a chart.
 
-MIT License，详见 [LICENSE](LICENSE)。开发过程与取舍记录见 [DEVELOPMENT.md](DEVELOPMENT.md)，申报材料见 [申报书.md](申报书.md)。
+## Statistical assumptions
+
+Control limits use classical three-sigma formulas and documented subgroup-size constants. Capability indices use sample standard deviation for the current implementation. Attribute charts require non-negative counts and positive exposure; X-bar charts require consistent subgroup sizes. These assumptions are deliberately visible in the API and should be reviewed against the process measurement system before production use.
+
+## Benchmarks
+
+The benchmark command processes a deterministic 10,000-observation sample and reports the computed summary. An observed local timing record and reproducibility notes are in [docs/benchmarks.md](docs/benchmarks.md); hosted-runner wall time is not treated as a performance guarantee.
+
+## Testing and CI
+
+The test suite covers empty and singleton inputs, zero variation, invalid specifications, mismatched lengths, changing exposure, subgroup tails, boundary probabilities, constant trends, outliers, run rules, native execution, and wasm-gc execution.
+
+GitHub Actions runs formatting, strict type checking, generated-interface drift detection, wasm-gc tests, native tests, and coverage analysis on Ubuntu, macOS, and Windows. The workflow installs the latest stable MoonBit toolchain through the official installer.
+
+## License
+
+MIT. See [LICENSE](LICENSE).

@@ -1,0 +1,20 @@
+name: Benchmark smoke test
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install latest stable MoonBit
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Build benchmark workload
+        run: moon build cmd/benchmark --target native
+      - name: Run benchmark workload
+        run: moon run cmd/benchmark

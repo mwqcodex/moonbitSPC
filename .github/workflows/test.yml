@@ -48,11 +48,20 @@ jobs:
           moon version
           moon fmt --check
           moon check --deny-warn
+          moon check --target all --deny-warn
           moon info
           test -f pkg.generated.mbti
           test -f cmd/demo/pkg.generated.mbti
+          test -f cmd/benchmark/moon.pkg
           git diff --exit-code -- '*.mbt' '*.mbt.md' 'moon.mod' 'moon.pkg' 'cmd/**/moon.pkg'
       - name: Test wasm-gc target
-        run: moon test --deny-warn
+        run: |
+          moon test --deny-warn --enable-coverage
+          moon coverage report -f summary
+          moon coverage analyze
       - name: Test native target
-        run: moon test --target native --deny-warn
+        run: moon test --target native --deny-warn --enable-coverage
+      - name: Run examples
+        run: |
+          moon run cmd/demo
+          moon run cmd/benchmark

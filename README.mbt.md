@@ -1,6 +1,6 @@
-# moonbitSPC API notes
+# moonbitSPC
 
-本文件保留可被 MoonBit 工具链识别的 API 示例说明；完整安装说明见 [README.md](README.md)。
+The checked API examples live in the package tests; use [README.md](README.md) for installation, architecture, assumptions, and CLI usage.
 
 ```mbt nocheck
 ///|
