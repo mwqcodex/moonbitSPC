@@ -6,87 +6,691 @@ import {
 }
 
 // Values
+pub fn absolute_error(Double, Double) -> Double
+
+pub fn accepted_event_count(Array[MeasurementEvent]) -> Int
+
 pub fn actionable_alert_count(Array[QualityAlert]) -> Int
+
+pub fn add_alert_section(ReportDocument, Array[QualityAlert]) -> Unit
+
+pub fn add_benchmark_section(ReportDocument, Int, Double) -> Unit
+
+pub fn add_maintenance_action(MaintenancePlan) -> MaintenancePlan
+
+pub fn add_planned_hours(StationCapacity, Double) -> StationCapacity
+
+pub fn add_provenance_section(ReportDocument, String, String) -> Unit
 
 pub fn alert_codes(Array[QualityAlert]) -> Array[String]
 
+pub fn alerts_text(Array[QualityAlert]) -> String
+
+pub fn allocation_total(Array[Int]) -> Int
+
+pub fn append_feature(MeasurementMatrix, Array[Double], String) -> MeasurementMatrix?
+
+pub fn asset_records(Array[MaintenanceRecord], String) -> Array[MaintenanceRecord]
+
+pub fn asset_runtime(Array[MaintenanceRecord], String) -> Double
+
+pub fn attribute_alarm_count(Array[AttributePoint]) -> Int
+
+pub fn attribute_rate(Array[Int], Array[Int]) -> Array[Double]?
+
+pub fn audit_action_count(Array[AuditEvent], String) -> Int
+
+pub fn audit_event(event_id~ : String, lot_id~ : String, actor~ : String, action~ : String, timestamp~ : String, passed~ : Bool, evidence~ : String) -> AuditEvent
+
+pub fn audit_events_for_lot(Array[AuditEvent], String) -> Array[AuditEvent]
+
+pub fn audit_failed_count(Array[AuditEvent]) -> Int
+
+pub fn audit_is_chronological(Array[AuditEvent]) -> Bool
+
+pub fn audit_missing_evidence(Array[AuditEvent]) -> Int
+
+pub fn audit_pass_rate(Array[AuditEvent]) -> Double
+
+pub fn audit_score(TraceabilityResult) -> Double
+
+pub fn audit_unique_lots(Array[AuditEvent]) -> Int
+
 pub fn autocorrelation(Array[Double], Int) -> Double?
+
+pub fn available_quantity(MaterialLot) -> Double
+
+pub fn average_rpn(Array[FailureMode]) -> Double
+
+pub fn average_severity(Array[MaintenanceRecord], String) -> Double?
+
+pub fn average_tool_wear(Array[ToolLifePoint], String) -> Double?
+
+pub fn backtest_forecast(Array[Double], ForecastStrategy, Int) -> Array[BacktestPoint]
+
+pub fn backtest_metrics(Array[BacktestPoint]) -> (Double, Double)?
+
+pub fn balance_capacity(Array[StationCapacity]) -> Double
 
 pub fn baseline_from(Array[Double]) -> Baseline
 
+pub fn block_work_order(QualityWorkOrder) -> QualityWorkOrder
+
+pub fn bool_rate(Array[Bool]) -> Double
+
+pub fn boolean_text(Bool) -> String
+
 pub fn capability(Array[Double], Specification) -> CapabilityResult
+
+pub fn capability_band(Double) -> Int
+
+pub fn capability_confidence_margin(Double, Int) -> Double
+
+pub fn capability_extended(mean~ : Double, deviation~ : Double, lower~ : Double, upper~ : Double, target~ : Double, threshold~ : Double) -> CapabilityExtended
+
+pub fn capability_margin(Double, Double) -> Double
+
+pub fn capability_section(Capability) -> ReportSection
+
+pub fn capability_status(Double, Double) -> String
+
+pub fn capacity_headroom(StationCapacity) -> Double
+
+pub fn capacity_remaining(StationCapacity) -> Double
+
+pub fn capacity_status(StationCapacity) -> String
+
+pub fn card_gap(DashboardCard) -> Double
+
+pub fn card_meets_target(DashboardCard) -> Bool
+
+pub fn card_status_from_gap(Double, Double, Double) -> String
+
+pub fn card_trend_name(Int) -> String
+
+pub fn catalog_average_normalized(MetricCatalog) -> Double
+
+pub fn catalog_failed(MetricCatalog) -> Array[QualityMetric]
+
+pub fn catalog_keys(MetricCatalog) -> Array[String]
+
+pub fn catalog_metric(MetricCatalog, String) -> QualityMetric?
+
+pub fn catalog_score(MetricCatalog) -> Double
+
+pub fn catalog_units(MetricCatalog) -> Array[String]
+
+pub fn category_counts(Array[String]) -> Array[CategoryCount]
+
+pub fn category_delta(Array[CategoryCount], Array[CategoryCount]) -> Array[CategoryCount]
+
+pub fn category_presence(Array[String], Array[String]) -> Array[Int]
+
+pub fn category_vocabulary(Array[String]) -> Array[String]
+
+pub fn center_matrix(MeasurementMatrix) -> MeasurementMatrix?
+
+pub fn center_values(Array[Double], Double) -> Array[Double]
+
+pub fn centered_moving_average(Array[Double], Int) -> Array[Double]?
+
+pub fn central_moment(Array[Double], Int) -> Double
+
+pub fn chart_section(ControlChart) -> ReportSection
+
+pub fn choose_forecast_strategy(Array[Double], Array[ForecastStrategy], Int) -> ForecastStrategy?
+
+pub fn clamp_probability(Double) -> Double
+
+pub fn clamp_values(Array[Double], lower~ : Double, upper~ : Double) -> CleanResult
+
+pub fn clean_values(Array[Double], lower~ : Double, upper~ : Double) -> CleanResult
 
 pub fn clipped(Array[Double], Double, Double) -> Array[Double]?
 
+pub fn close_failure_mode(FailureMode) -> FailureMode
+
+pub fn column(MeasurementMatrix, Int) -> Array[Double]?
+
+pub fn column_deviations(MeasurementMatrix) -> Array[Double]?
+
+pub fn column_means(MeasurementMatrix) -> Array[Double]?
+
+pub fn compare_stations(Array[MeasurementEvent], String, threshold~ : Double) -> Array[StationComparison]
+
 pub fn compare_windows(QualityWindow, QualityWindow, Double) -> QualityAlert?
+
+pub fn complete_stage(ProductionStage) -> ProductionStage
+
+pub fn complete_work_order(QualityWorkOrder, Double, Int) -> QualityWorkOrder
+
+pub fn completed_stage_count(Array[ProductionStage]) -> Int
+
+pub fn completion_rate(Array[QualityWorkOrder]) -> Double
+
+pub fn concatenate_values(Array[Double], Array[Double]) -> Array[Double]
 
 pub fn confidence_interval_95(Array[Double]) -> (Double, Double)?
 
+pub fn consume_material(MaterialLot, Double) -> MaterialLot
+
+pub fn contains_line(Array[String], String) -> Bool
+
+pub fn contract_duplicate_count(Array[String]) -> Int
+
+pub fn contract_field_count(DataContract) -> Int
+
+pub fn contract_has_reason(ContractResult, String) -> Bool
+
+pub fn contract_is_backward_compatible(Array[String], Array[String]) -> Bool
+
+pub fn contract_merge_fields(Array[String], Array[String]) -> Array[String]
+
+pub fn contract_missing_fields(DataContract, Array[String]) -> Array[String]
+
+pub fn contract_quality_score(ContractResult) -> Double
+
+pub fn contract_reason_count(ContractResult) -> Int
+
+pub fn contract_schema_signature(Array[String]) -> String
+
+pub fn contract_version_compatible(String, String) -> Bool
+
+pub fn contract_version_major(String) -> Int
+
 pub fn correlation(Array[Double], Array[Double]) -> Double?
+
+pub fn correlation_matrix(MeasurementMatrix) -> Array[Array[Double]]?
+
+pub fn count_alarm_count(Array[CountPoint]) -> Int
+
+pub fn count_chart_points(Array[Int]) -> Array[CountPoint]?
+
+pub fn count_component_failures(MeasurementMatrix, Array[Double], Array[Double]) -> Int
+
+pub fn count_mask(Array[Bool]) -> Int
+
+pub fn count_missing(Array[Double?]) -> Int
+
+pub fn count_true(Array[Bool]) -> Int
 
 pub fn covariance(Array[Double], Array[Double]) -> Double?
 
+pub fn covariance_matrix(MeasurementMatrix) -> Array[Array[Double]]?
+
 pub fn critical_alert_count(Array[QualityAlert]) -> Int
+
+pub fn critical_failure_modes(Array[FailureMode]) -> Array[FailureMode]
+
+pub fn critical_maintenance_count(Array[MaintenancePlan]) -> Int
+
+pub fn csv_document(Array[String], Array[Array[String]]) -> String
+
+pub fn csv_escape(String) -> String
+
+pub fn csv_row(Array[String]) -> String
+
+pub fn cumulative_product(Array[Double]) -> Array[Double]
+
+pub fn cumulative_sum(Array[Double]) -> Array[Double]
 
 pub fn cusum(Array[Double], target~ : Double, allowance~ : Double, decision~ : Double) -> Array[Double]
 
+pub fn dashboard_card(key~ : String, title~ : String, value~ : Double, target~ : Double, unit~ : String, trend~ : Int, status~ : String) -> DashboardCard
+
+pub fn dashboard_snapshot(name~ : String, generated_at~ : String) -> DashboardSnapshot
+
+pub fn data_contract(name~ : String, required_fields~ : Array[String], minimum_rows~ : Int, maximum_missing_rate~ : Double, unique_key~ : String, version~ : String) -> DataContract
+
+pub fn data_quality_score(Array[Double?], Double, Double) -> Double
+
+pub fn decreasing_pair_count(Array[Double]) -> Int
+
+pub fn deduplicate_adjacent(Array[Double]) -> Array[Double]
+
+pub fn defect_count_error(Int, Int) -> Int
+
 pub fn defect_rate(Array[Double], Specification) -> Double?
+
+pub fn defects_per_opportunity(Array[Int], Array[Int]) -> Double?
+
+pub fn denormalize_range(Double, Double, Double) -> Double
+
+pub fn depleted_lot_count(Array[MaterialLot]) -> Int
+
+pub fn detect_trend(metric~ : String, values~ : Array[Double], tolerance~ : Double) -> TrendAlert?
 
 pub fn detect_western_electric(Array[Double], mean~ : Double, sigma~ : Double) -> Array[RuleViolation]
 
 pub fn detrend(Array[Double]) -> Array[Double]?
 
+pub fn diagnose_process(Array[Double], Double, Double, Double) -> DiagnosticResult
+
+pub fn diagnostic_alarm_count(DiagnosticResult) -> Int
+
+pub fn diagnostic_label(DiagnosticResult) -> String
+
+pub fn diagnostic_score(DiagnosticResult) -> Double
+
 pub fn direction_changes(Array[Double]) -> Int
 
+pub fn disable_policy(QualityPolicy) -> QualityPolicy
+
+pub fn distance_alarms(MeasurementMatrix, Array[Double], threshold~ : Double) -> Array[MultivariateAlarm]?
+
+pub fn distance_from_interval(Double, Double, Double) -> Double
+
+pub fn distribution_summary(Array[Double]) -> DistributionSummary
+
+pub fn document_quality_report(ReportResult, String) -> ReportDocument
+
+pub fn dominant_feature(MeasurementMatrix) -> Int?
+
 pub fn drift_score(Array[Double], Baseline, threshold~ : Double) -> Array[DriftPoint]
+
+pub fn drop_missing(Array[Double?]) -> Array[Double]
+
+pub fn due_maintenance_count(Array[MaintenancePlan], Int) -> Int
+
+pub fn evaluate_policy(QualityPolicy, Array[Double]) -> PolicyDecision
+
+pub fn evaluate_release(ReleaseGate) -> GateDecision
 
 pub fn evaluate_window(QualityWindow) -> Array[QualityAlert]
 
 pub fn evaluate_windows(Array[QualityWindow]) -> Array[QualityAlert]
 
+pub fn event_acceptance_rate(Array[MeasurementEvent]) -> Double
+
+pub fn evidence_coverage(Array[QualityWorkOrder]) -> Double
+
+pub fn evidence_types(Array[AuditEvent]) -> Array[String]
+
 pub fn ewma(Array[Double], lambda~ : Double, initial~ : Double) -> Array[Double]
+
+pub fn exceeded_tool_count(Array[ToolLifePoint]) -> Int
+
+pub fn exponential_smooth(Array[Double], alpha~ : Double, initial~ : Double) -> Array[Double]
+
+pub fn export_status(Bool, Double) -> String
+
+pub fn failure_mode(id~ : String, process~ : String, cause~ : String, effect~ : String, severity~ : Int, occurrence~ : Int, detection~ : Int, owner~ : String, mitigation~ : String) -> FailureMode
+
+pub fn failure_modes_by_process(Array[FailureMode], String) -> Array[FailureMode]
+
+pub fn feature_events(Array[MeasurementEvent], String) -> Array[MeasurementEvent]
+
+pub fn fifo_lots(Array[MaterialLot]) -> Array[MaterialLot]
+
+pub fn fill_missing(Array[Double?], Double) -> CleanResult
 
 pub fn filter_shifted_windows(Array[QualityWindow], Double, Double) -> Array[QualityWindow]
 
+pub fn finite_population_sample(population~ : Int, confidence_z~ : Double, proportion~ : Double, margin~ : Double) -> Int
+
 pub fn first_actionable_window(Array[QualityWindow]) -> Int?
+
+pub fn first_difference(Array[Double]) -> Array[Double]
+
+pub fn first_mean_shift(Array[Double], Double, Double) -> Int
+
+pub fn fitted_errors(Array[Double], ForecastStrategy) -> Array[Double]
 
 pub fn forecast(Array[Double], Int) -> Array[Double]?
 
+pub fn forecast_bands(Array[Double], Double, Array[Double]) -> Array[(Array[Double], Array[Double])]
+
+pub fn forecast_with(Array[Double], ForecastStrategy, Int) -> ForecastResult?
+
 pub fn frequencies(Array[Int]) -> Array[Frequency]
+
+pub fn gauge_bias_percent(GaugeStudy, Double) -> Double
+
+pub fn gauge_repeatability_ratio(GaugeStudy, Double) -> Double
+
+pub fn gauge_resolution_ratio(GaugeStudy, Double) -> Double
+
+pub fn gauge_status(GaugeStudy) -> String
+
+pub fn gauge_study(readings~ : Array[Double], reference~ : Double, tolerance~ : Double, resolution~ : Double) -> GaugeStudy
 
 pub fn geometric_mean(Array[Double]) -> Double?
 
+pub fn group_events(Array[MeasurementEvent]) -> Array[LotFeature]
+
+pub fn group_tool_life(Array[ToolLifePoint]) -> Array[String]
+
+pub fn grr_percent(Double, Double) -> Double
+
 pub fn harmonic_mean(Array[Double]) -> Double?
 
+pub fn has_duplicate_indices(Array[Int]) -> Bool
+
+pub fn helper_root_mean_squared_error(Array[Double]) -> Double
+
+pub fn high_severity_trends(Array[TrendAlert]) -> Int
+
+pub fn highest_wear(Array[ToolLifePoint], Int) -> Array[ToolLifePoint]
+
 pub fn histogram(Array[Double], Int) -> Array[HistogramBin]?
+
+pub fn increased_categories(Array[CategoryCount], Array[CategoryCount]) -> Array[CategoryCount]
+
+pub fn increasing_pair_count(Array[Double]) -> Int
+
+pub fn indent_lines(Array[String], String) -> Array[String]
+
+pub fn integer_range_sum(Int, Int) -> Int
+
+pub fn interpolate_missing(Array[Double?]) -> Array[Double?]
+
+pub fn interquartile_range(Array[Double]) -> Double
+
+pub fn invalid_stage_sequence(Array[ProductionStage]) -> Int
+
+pub fn inventory_utilization(Array[MaterialLot]) -> Double
 
 pub fn iqr(Array[Double]) -> Double?
 
 pub fn iqr_outliers(Array[Double], Double) -> Array[Bool]?
 
+pub fn is_non_decreasing(Array[Double]) -> Bool
+
+pub fn is_non_increasing(Array[Double]) -> Bool
+
+pub fn join_lines(Array[String]) -> String
+
+pub fn key_value_line(String, String) -> String
+
+pub fn kurtosis_value(Array[Double]) -> Double
+
+pub fn lag_autocorrelation(Array[Double], Int) -> Double
+
+pub fn lag_values(Array[Double], Int) -> Array[Double]
+
+pub fn largest_change_index(Array[Double]) -> Int?
+
+pub fn lead_values(Array[Double], Int) -> Array[Double]
+
+pub fn limit_repeated_runs(Array[Double], Int) -> CleanResult
+
+pub fn line_count(String) -> Int
+
+pub fn linear_interpolate(Double, Double, Double, Double, Double) -> Double
+
 pub fn linear_trend(Array[Double]) -> Trend?
+
+pub fn linearity_bias(Array[Double], Array[Double]) -> Array[Double]
+
+pub fn linearity_slope(Array[Double], Array[Double]) -> Double
 
 pub fn longest_run(Array[Double], Double) -> Int
 
+pub fn lot_age_bucket(Int) -> String
+
+pub fn lot_events(Array[MeasurementEvent], String) -> Array[MeasurementEvent]
+
+pub fn lot_feature_reports(Array[MeasurementEvent], Specification?) -> Array[LotFeatureSummary]
+
+pub fn lots_for_material(Array[MaterialLot], String) -> Array[MaterialLot]
+
 pub fn mad(Array[Double]) -> Double?
+
+pub fn maintenance_action_count(Array[MaintenancePlan]) -> Int
+
+pub fn maintenance_compliance(Array[MaintenancePlan], Int) -> Double
+
+pub fn maintenance_due(MaintenancePlan, Int) -> Bool
+
+pub fn maintenance_event_counts(Array[MaintenanceRecord]) -> Array[CategoryCount]
+
+pub fn maintenance_overdue_days(MaintenancePlan, Int) -> Int
+
+pub fn maintenance_plan(asset_id~ : String, interval_days~ : Int, last_service_day~ : Int, runtime_hours~ : Double, runtime_limit~ : Double, open_actions~ : Int) -> MaintenancePlan
+
+pub fn maintenance_priority(MaintenancePlan, Int) -> Double
+
+pub fn maintenance_risk(MaintenancePlan) -> String
+
+pub fn maintenance_runtime_margin(MaintenancePlan) -> Double
+
+pub fn maintenance_runtime_utilization(MaintenancePlan) -> Double
+
+pub fn maintenance_status_counts(Array[MaintenancePlan]) -> Array[Int]
+
+pub fn markdown_row(Array[String]) -> String
+
+pub fn markdown_table(Array[String], Array[Array[String]]) -> String
+
+pub fn material_is_in_range(MaterialLot, Double) -> Bool
+
+pub fn material_lot(material_id~ : String, lot_id~ : String, quantity~ : Double, lower_limit~ : Double, upper_limit~ : Double) -> MaterialLot
+
+pub fn max_abs(Double, Double) -> Double
+
+pub fn maximum_tool_runtime(Array[ToolLifePoint], String) -> Double?
+
+pub fn mean_absolute_error(Array[Double], Array[Double]) -> Double?
+
+pub fn mean_squared_error(Array[Double], Array[Double]) -> Double?
+
+pub fn mean_time_between_events(Array[MaintenanceRecord], String) -> Double?
+
+pub fn measured_event_count(Array[MeasurementEvent]) -> Int
+
+pub fn measurement_coverage(Array[MeasurementEvent]) -> Double
+
+pub fn measurement_system_rating(Double, Double) -> String
 
 pub fn median(Array[Double]) -> Double?
 
+pub fn median_absolute_deviation(Array[Double]) -> Double
+
+pub fn median_value(Array[Double]) -> Double
+
+pub fn meets_defect_target(Array[SimulatedPoint], Double) -> Bool
+
+pub fn merge_event_streams(Array[MeasurementEvent], Array[MeasurementEvent]) -> Array[MeasurementEvent]
+
+pub fn merge_release_gates(ReleaseGate, ReleaseGate) -> ReleaseGate
+
+pub fn metric_catalog(version~ : String) -> MetricCatalog
+
+pub fn metric_gap(QualityMetric) -> Double
+
+pub fn metric_meets_target(QualityMetric) -> Bool
+
+pub fn midpoint(Double, Double) -> Double
+
 pub fn min_max_scale(Array[Double]) -> Array[Double]?
+
+pub fn min_positive(Double, Double) -> Double
+
+pub fn missing_event_count(Array[MeasurementEvent]) -> Int
+
+pub fn missing_rate(Array[Double?]) -> Double
+
+pub fn mitigation_coverage(Array[FailureMode]) -> Double
+
+pub fn most_restrictive_policy(Array[QualityPolicy]) -> QualityPolicy?
 
 pub fn moving_mean(Array[Double], Int) -> Array[Double]?
 
 pub fn moving_std(Array[Double], Int) -> Array[Double]?
 
+pub fn ndc(Double, Double) -> Double
+
+pub fn nonconformance_ppm(Array[Double], Double, Double) -> Double
+
+pub fn nonempty_lines(Array[String]) -> Array[String]
+
+pub fn normality_distance(DistributionSummary) -> Double
+
+pub fn normality_label(DistributionSummary) -> String
+
+pub fn normalize_range(Double, Double, Double) -> Double
+
+pub fn normalize_wear_points(Array[ToolLifePoint]) -> Array[Double]
+
+pub fn normalize_weights(Array[Double]) -> Array[Double]?
+
+pub fn normalized_metric(QualityMetric) -> Double
+
+pub fn numbered_lines(Array[String]) -> Array[String]
+
+pub fn observed_simulation_drift(Array[SimulatedPoint]) -> Double?
+
+pub fn observed_yield(Array[Double], Double, Double) -> Double
+
+pub fn occupied_range(Array[Double?]) -> (Int, Int)?
+
+pub fn one_sided_capability(mean~ : Double, deviation~ : Double, limit~ : Double, upper~ : Bool) -> Double
+
+pub fn online_snapshot(Array[Double], lower~ : Double?, upper~ : Double?) -> StreamSnapshot
+
+pub fn open_failure_modes(Array[FailureMode]) -> Int
+
+pub fn open_work_order_count(Array[QualityWorkOrder]) -> Int
+
+pub fn operator_average(Array[Double], Int) -> Array[Double]
+
+pub fn outlier_indices(Array[Double], Double, Double) -> Array[Int]
+
+pub fn outside_mask(Array[Double], Double, Double) -> Array[Bool]
+
+pub fn overdue_work_order_count(Array[QualityWorkOrder], Int) -> Int
+
+pub fn p_chart_points(Array[Int], Array[Int]) -> Array[AttributePoint]?
+
+pub fn pareto_categories(Array[String]) -> Array[ParetoRow]
+
+pub fn percent_text(Double) -> String
+
+pub fn percentage_change(Double, Double) -> Double
+
 pub fn percentile_rank(Array[Double], Double) -> Double?
+
+pub fn plan_utilization(Array[StationCapacity]) -> Double
+
+pub fn planned_service_days(Array[MaintenancePlan]) -> Array[Int]
+
+pub fn plans_for_asset(Array[MaintenancePlan], String) -> Array[MaintenancePlan]
+
+pub fn plateau_count(Array[Double], Double) -> Int
+
+pub fn policies_enabled(Array[QualityPolicy]) -> Int
+
+pub fn policy_defect_count(QualityPolicy, Array[Double]) -> Int
+
+pub fn policy_defect_rate(QualityPolicy, Array[Double]) -> Double
+
+pub fn policy_distance(QualityPolicy, Double) -> Double
+
+pub fn policy_margin_ok(QualityPolicy, Double) -> Bool
+
+pub fn policy_summary(Array[QualityPolicy]) -> Array[String]
+
+pub fn policy_yield(QualityPolicy, Array[Double]) -> Double
 
 pub fn pooled_standard_deviation(Array[Array[Double]]) -> Double?
 
+pub fn ppm_from_rate(Double) -> Double
+
+pub fn predicted_tool_limit(Array[ToolLifePoint]) -> Double?
+
 pub fn product_of(Array[Double]) -> Double
+
+pub fn profile_delta(Array[Double], Array[Double]) -> Array[Double]?
+
+pub fn profile_max_delta(Array[Double], Array[Double]) -> Double?
+
+pub fn project_matrix(MeasurementMatrix, Array[Double]) -> Array[Double]?
+
+pub fn project_row(Array[Double], Array[Double]) -> Double?
+
+pub fn proportional_allocation(total~ : Int, Array[Int]) -> Array[Int]
+
+pub fn quality_metric(key~ : String, value~ : Double, unit~ : String, target~ : Double, lower_is_better~ : Bool) -> QualityMetric
+
+pub fn quality_policy(name~ : String, lower_limit~ : Double, upper_limit~ : Double, warning_margin~ : Double, critical_margin~ : Double, required_samples~ : Int) -> QualityPolicy
 
 pub fn quality_report(Array[Subgroup], specification? : Specification) -> ReportResult
 
+pub fn quality_work_order(order_id~ : String, lot_id~ : String, title~ : String, owner~ : String, priority~ : Int, due_day~ : Int, estimated_hours~ : Double) -> QualityWorkOrder
+
 pub fn quantile(Array[Double], Double) -> Double?
+
+pub fn quantile_value(Array[Double], Double) -> Double
+
+pub fn reconstruct_row(Double, Array[Double]) -> Array[Double]
+
+pub fn reconstruction_error(MeasurementMatrix, Array[Double]) -> Double?
+
+pub fn record_service(MaintenancePlan, Int, Double) -> MaintenancePlan
+
+pub fn rejected_event_count(Array[MeasurementEvent]) -> Int
+
+pub fn relative_error(Double, Double) -> Double
+
+pub fn relative_to_first(Array[Double]) -> Array[Double]?
+
+pub fn relative_to_last(Array[Double]) -> Array[Double]?
+
+pub fn release_alert_burden(ReleaseGate) -> Double
+
+pub fn release_audit_lines(ReleaseGate) -> Array[String]
+
+pub fn release_blockers(ReleaseGate) -> Array[String]
+
+pub fn release_check_rate(ReleaseGate) -> Double
+
+pub fn release_decision(Array[MeasurementEvent], minimum_features~ : Int, minimum_measurements~ : Int) -> ReleaseDecision
+
+pub fn release_evidence_required(ReleaseGate) -> Int
+
+pub fn release_gap(ReleaseGate) -> Double
+
+pub fn release_gate(name~ : String, required_checks~ : Int, passed_checks~ : Int, open_alerts~ : Int, critical_alerts~ : Int, evidence_count~ : Int, minimum_score~ : Double) -> ReleaseGate
+
+pub fn release_ready(ReleaseGate) -> Bool
+
+pub fn release_score(ReleaseGate) -> Double
+
+pub fn reliability_summary(Array[MaintenanceRecord], String, severe_threshold~ : Int) -> ReliabilitySummary
+
+pub fn remaining_wear(ToolLifePoint) -> Double
+
+pub fn remove_iqr_outliers(Array[Double], multiplier~ : Double) -> CleanResult
+
+pub fn removed_categories(Array[CategoryCount], Array[CategoryCount]) -> Array[String]
+
+pub fn reorder_needed(Array[MaterialLot], Double) -> Bool
+
+pub fn repeatability_by_group(Array[Array[Double]]) -> Double
+
+pub fn replay_stream(Array[Double?], policy~ : StreamPolicy, center~ : Double) -> Int
+
+pub fn report_is_clean(ReportDocument) -> Bool
+
+pub fn report_section_count(ReportDocument) -> Int
+
+pub fn report_section_titles(ReportDocument) -> Array[String]
+
+pub fn report_warning_count(ReportDocument) -> Int
+
+pub fn reproducibility(Array[Double]) -> Double
+
+pub fn required_sample_size(confidence_z~ : Double, proportion~ : Double, margin~ : Double) -> Int
+
+pub fn reserve_material(MaterialLot, Double) -> MaterialLot
+
+pub fn reverse_values(Array[Double]) -> Array[Double]
+
+pub fn risk_reduction(FailureMode, FailureMode) -> Double
+
+pub fn robust_outlier_indices(Array[Double], Double) -> Array[Int]
+
+pub fn robust_z_score(Double, Double, Double) -> Double
 
 pub fn rolling_max(Array[Double], Int) -> Array[Double]?
 
@@ -94,15 +698,191 @@ pub fn rolling_min(Array[Double], Int) -> Array[Double]?
 
 pub fn rolling_range(Array[Double], Int) -> Array[Double]?
 
+pub fn rolling_sum(Array[Double], Int) -> Array[Double]?
+
+pub fn root_mean_squared_error(Array[Double], Array[Double]) -> Double?
+
+pub fn rotate_values(Array[Double], Int) -> Array[Double]
+
+pub fn row_distances(MeasurementMatrix, Array[Double]) -> Array[Double]?
+
+pub fn runs_count(Array[Double], Double) -> Int
+
+pub fn safe_divide(Double, Double, Double) -> Double
+
+pub fn safe_range(Double, Double, Double) -> Double
+
+pub fn sample(SamplingPlan) -> SampleResult
+
 pub fn sample_uniform(Int, seed~ : Int, lower~ : Double, upper~ : Double) -> Array[Double]
+
+pub fn sampling_coverage(Array[Int], Int) -> Double
+
+pub fn sampling_interval(population~ : Int, requested~ : Int) -> Double
+
+pub fn sampling_plan(sampling_method~ : SamplingMethod, population~ : Int, requested~ : Int, seed~ : Int) -> SamplingPlan
+
+pub fn scale_values(Array[Double], Double) -> Array[Double]?
+
+pub fn score_band(Double) -> String
 
 pub fn scorecard(Array[QualityWindow]) -> Scorecard
 
+pub fn scorecard_markdown(Scorecard) -> String
+
+pub fn second_difference(Array[Double]) -> Array[Double]
+
+pub fn select_mask(Array[Double], Array[Bool]) -> Array[Double]
+
+pub fn select_rows(MeasurementMatrix, Array[MultivariateAlarm], Bool) -> MeasurementMatrix
+
+pub fn severe_records(Array[MaintenanceRecord], Int) -> Array[MaintenanceRecord]
+
+pub fn sigma_from_yield(Double) -> Double
+
 pub fn sign_changes(Array[Double], Double) -> Int
+
+pub fn sign_code(Double, Double) -> Int
+
+pub fn simple_random_indices(population~ : Int, requested~ : Int, seed~ : Int) -> Array[Int]
+
+pub fn simulate_comparison(ProcessScenario, Int) -> (Array[SimulatedPoint], Array[SimulatedPoint])
+
+pub fn simulate_monitor(ProcessScenario, Int) -> Int
+
+pub fn simulate_process(ProcessScenario, Int) -> Array[SimulatedPoint]
+
+pub fn simulated_categories(Int, Int, Int) -> Array[String]
+
+pub fn simulated_centers(Array[SimulatedPoint]) -> Array[Double]
+
+pub fn simulated_noise(Int) -> Double
+
+pub fn simulated_subgroups(ProcessScenario, Int, Int) -> Array[Array[Double]]?
+
+pub fn simulated_values(Array[SimulatedPoint]) -> Array[Double]
+
+pub fn simulation_alarms(Array[SimulatedPoint], Double) -> Int
+
+pub fn simulation_causes(Array[SimulatedPoint]) -> Array[CategoryCount]
+
+pub fn simulation_defects(Array[SimulatedPoint]) -> Int
+
+pub fn simulation_delta(Array[SimulatedPoint], Array[SimulatedPoint]) -> Array[Double]?
+
+pub fn simulation_special_causes(Array[SimulatedPoint]) -> Int
+
+pub fn skewness_value(Array[Double]) -> Double
+
+pub fn snapshot_alert_density(DashboardSnapshot) -> Double
+
+pub fn snapshot_average_gap(DashboardSnapshot) -> Double
+
+pub fn snapshot_card(DashboardSnapshot, String) -> DashboardCard?
+
+pub fn snapshot_card_count(DashboardSnapshot) -> Int
+
+pub fn snapshot_card_statuses(DashboardSnapshot) -> Array[String]
+
+pub fn snapshot_card_targets(DashboardSnapshot) -> Array[Double]
+
+pub fn snapshot_card_values(DashboardSnapshot) -> Array[Double]
+
+pub fn snapshot_completion(DashboardSnapshot) -> Double
+
+pub fn snapshot_critical_count(DashboardSnapshot) -> Int
+
+pub fn snapshot_failed_cards(DashboardSnapshot) -> Int
+
+pub fn snapshot_filter_status(DashboardSnapshot, String) -> Array[DashboardCard]
+
+pub fn snapshot_filter_unit(DashboardSnapshot, String) -> Array[DashboardCard]
+
+pub fn snapshot_good_cards(DashboardSnapshot) -> Int
+
+pub fn snapshot_has_key(DashboardSnapshot, String) -> Bool
+
+pub fn snapshot_health(DashboardSnapshot) -> String
+
+pub fn snapshot_is_empty(DashboardSnapshot) -> Bool
+
+pub fn snapshot_keys(DashboardSnapshot) -> Array[String]
+
+pub fn snapshot_max_gap(DashboardSnapshot) -> Double
+
+pub fn snapshot_merge(DashboardSnapshot, DashboardSnapshot) -> DashboardSnapshot
+
+pub fn snapshot_quality_score(DashboardSnapshot) -> Double
+
+pub fn snapshot_summary_line(DashboardSnapshot) -> String
+
+pub fn snapshot_target_rate(DashboardSnapshot) -> Double
+
+pub fn snapshot_trending_down(DashboardSnapshot) -> Int
+
+pub fn snapshot_trending_up(DashboardSnapshot) -> Int
+
+pub fn snapshot_units(DashboardSnapshot) -> Array[String]
+
+pub fn snapshot_warning_count(DashboardSnapshot) -> Int
+
+pub fn sort_cards_by_gap(DashboardSnapshot) -> Array[DashboardCard]
+
+pub fn sort_category_counts(Array[CategoryCount]) -> Array[CategoryCount]
+
+pub fn sort_events(Array[MeasurementEvent]) -> Array[MeasurementEvent]
+
+pub fn sort_failure_modes(Array[FailureMode]) -> Array[FailureMode]
+
+pub fn sort_lines(Array[String]) -> Array[String]
+
+pub fn sort_maintenance_plans(Array[MaintenancePlan], Int) -> Array[MaintenancePlan]
+
+pub fn sort_rows_by_feature(MeasurementMatrix, Int) -> MeasurementMatrix?
+
+pub fn sort_stages(Array[ProductionStage]) -> Array[ProductionStage]
+
+pub fn sort_work_orders(Array[QualityWorkOrder], Int) -> Array[QualityWorkOrder]
 
 pub fn sorted_copy(Array[Double]) -> Array[Double]
 
+pub fn split_at(Array[Double], Int) -> (Array[Double], Array[Double])
+
+pub fn squared_distance(Array[Double], Array[Double]) -> Double?
+
+pub fn squared_error(Double, Double) -> Double
+
+pub fn stability_range(Array[Double]) -> Double
+
+pub fn stable_round(Double, Int) -> Double
+
+pub fn stage(name~ : String, duration_hours~ : Double, required_station~ : String, sequence~ : Int) -> ProductionStage
+
+pub fn stage_completion_rate(Array[ProductionStage]) -> Double
+
+pub fn stage_duration(Array[ProductionStage]) -> Double
+
+pub fn stages_for_station(Array[ProductionStage], String) -> Array[ProductionStage]
+
 pub fn standard_error(Array[Double]) -> Double?
+
+pub fn standardize_matrix(MeasurementMatrix) -> MeasurementMatrix?
+
+pub fn standardize_values(Array[Double], Double, Double) -> Array[Double]?
+
+pub fn start_work_order(QualityWorkOrder) -> QualityWorkOrder
+
+pub fn station_capacity(station~ : String, available_hours~ : Double, planned_hours~ : Double, operators~ : Int) -> StationCapacity
+
+pub fn station_events(Array[MeasurementEvent], String) -> Array[MeasurementEvent]
+
+pub fn stock_available(Array[MaterialLot]) -> Double
+
+pub fn stock_reserved(Array[MaterialLot]) -> Double
+
+pub fn stock_total(Array[MaterialLot]) -> Double
+
+pub fn stratified_indices(strata~ : Array[Int], requested~ : Int, seed~ : Int) -> Array[Int]
 
 pub fn subgroup(Array[Double], Int) -> Array[Array[Double]]?
 
@@ -110,15 +890,125 @@ pub fn sum_of(Array[Double]) -> Double
 
 pub fn summarize(Array[Subgroup], specification? : Specification) -> SummaryResult
 
+pub fn summarize_lot_feature(LotFeature, Specification?) -> LotFeatureSummary
+
+pub fn summarize_lot_features(Array[LotFeature], Specification?) -> Array[LotFeatureSummary]
+
+pub fn summarize_simulation(ProcessScenario, Array[SimulatedPoint]) -> SimulationSummary
+
+pub fn summary_section(Summary) -> ReportSection
+
+pub fn supported_sampling_methods() -> Array[SamplingMethod]
+
+pub fn symmetric_percentage_error(Array[Double], Array[Double]) -> Double?
+
+pub fn systematic_indices(population~ : Int, requested~ : Int, offset~ : Int) -> Array[Int]
+
+pub fn total_available_hours(Array[StationCapacity]) -> Double
+
+pub fn total_planned_hours(Array[StationCapacity]) -> Double
+
+pub fn traceability_check(Array[AuditEvent]) -> TraceabilityResult
+
+pub fn trend_alert_count(Array[TrendAlert]) -> Int
+
+pub fn trend_confidence(Array[Double], Double) -> Double
+
+pub fn trend_direction(Array[Double]) -> Int
+
+pub fn trend_direction_code(Double, Double) -> Int
+
+pub fn trend_direction_name(Int) -> String
+
+pub fn trend_relative_change(Array[Double]) -> Double
+
+pub fn trend_severity(TrendAlert) -> String
+
+pub fn trend_slope(Array[Double]) -> Double
+
+pub fn trend_total_change(Array[Double]) -> Double
+
+pub fn trend_turning_points(Array[Double]) -> Int
+
 pub fn trimmed(Array[Double], Double) -> Array[Double]?
 
+pub fn truncate_text(String, Int) -> String
+
+pub fn ts_autocorrelation(Array[Double], Int) -> Double
+
+pub fn ts_autocovariance(Array[Double], Int) -> Double
+
+pub fn ts_centered(Array[Double], Int) -> Array[Double]
+
+pub fn ts_count_crossings(Array[Double], Double) -> Int
+
+pub fn ts_detrend(Array[Double]) -> Array[Double]
+
+pub fn ts_difference(Array[Double], Int) -> Array[Double]
+
+pub fn ts_downsample(Array[Double], Int) -> Array[Double]
+
+pub fn ts_first(Array[Double], Double) -> Double
+
+pub fn ts_last(Array[Double], Double) -> Double
+
+pub fn ts_mean(Array[Double]) -> Double
+
+pub fn ts_moving_max(Array[Double], Int) -> Array[Double]
+
+pub fn ts_moving_min(Array[Double], Int) -> Array[Double]
+
+pub fn ts_moving_range(Array[Double], Int) -> Array[Double]
+
+pub fn ts_pad(Array[Double], Int, Double) -> Array[Double]
+
+pub fn ts_peak_index(Array[Double]) -> Int
+
+pub fn ts_range(Array[Double]) -> Double
+
+pub fn ts_seasonal_difference(Array[Double], Int) -> Array[Double]
+
+pub fn ts_trough_index(Array[Double]) -> Int
+
+pub fn unique_features(Array[MeasurementEvent]) -> Array[String]
+
+pub fn unique_lines(Array[String]) -> Array[String]
+
+pub fn unique_stations(Array[MeasurementEvent]) -> Array[String]
+
+pub fn valid_indices(Array[Int], Int) -> Bool
+
+pub fn validate_contract(DataContract, Array[String], Int, Int, Int, Array[String]) -> ContractResult
+
 pub fn validate_counts(Array[Int], Array[Int]) -> Array[ValidationIssue]
+
+pub fn validate_event_sequences(Array[MeasurementEvent]) -> Array[ValidationIssue]
 
 pub fn validate_specification(Specification) -> Array[ValidationIssue]
 
 pub fn validate_subgroups(Array[Subgroup]) -> Array[ValidationIssue]
 
+pub fn values_from_events(Array[MeasurementEvent]) -> Array[Double]
+
+pub fn variance_ratio(Array[Double], Int) -> Double
+
+pub fn violation_section(Array[RuleViolation]) -> ReportSection
+
+pub fn wear_percentage(ToolLifePoint) -> Double
+
+pub fn wear_trend(Array[ToolLifePoint]) -> Trend?
+
+pub fn wear_warning(ToolLifePoint, Double) -> Bool
+
+pub fn weighted_average(Array[Double], Array[Double]) -> Double
+
+pub fn weighted_defect_score(Array[String], Array[(String, Double)]) -> Double
+
 pub fn weighted_mean(Array[Double], Array[Double]) -> Double?
+
+pub fn weighted_row_score(Array[Double], Array[Double]) -> Double?
+
+pub fn weighted_scores(MeasurementMatrix, Array[Double]) -> Array[Double]?
 
 pub fn window_deviations(Array[QualityWindow]) -> Array[Double]
 
@@ -128,7 +1018,23 @@ pub fn window_means(Array[QualityWindow]) -> Array[Double]
 
 pub fn windows_from_values(Array[Double], Int, specification? : Specification) -> Array[QualityWindow]?
 
+pub fn winsorize_values(Array[Double], multiplier~ : Double) -> CleanResult
+
 pub fn winsorized(Array[Double], Double) -> Array[Double]?
+
+pub fn within_mask(Array[Double], Double, Double) -> Array[Bool]
+
+pub fn word_count(String) -> Int
+
+pub fn work_order_efficiency(QualityWorkOrder) -> Double
+
+pub fn work_order_is_overdue(QualityWorkOrder, Int) -> Bool
+
+pub fn work_order_score(QualityWorkOrder, Int) -> Double
+
+pub fn work_orders_for_lot(Array[QualityWorkOrder], String) -> Array[QualityWorkOrder]
+
+pub fn yield_from_ppm(Double) -> Double
 
 pub fn z_scores(Array[Double], Double, Double) -> Array[Double]?
 
@@ -141,6 +1047,32 @@ pub(all) enum AlertSeverity {
   Critical
 } derive(Eq, ToJson, @debug.Debug)
 
+pub(all) struct AttributePoint {
+  index : Int
+  rate : Double
+  center : Double
+  lower : Double
+  upper : Double
+  alarm : Bool
+} derive(ToJson, @debug.Debug)
+
+pub struct AuditEvent {
+  event_id : String
+  lot_id : String
+  actor : String
+  action : String
+  timestamp : String
+  passed : Bool
+  evidence : String
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct BacktestPoint {
+  index : Int
+  actual : Double
+  predicted : Double
+  error : Double
+} derive(ToJson, @debug.Debug)
+
 pub(all) struct Baseline {
   center : Double
   deviation : Double
@@ -148,6 +1080,19 @@ pub(all) struct Baseline {
   upper : Double
   count : Int
 } derive(ToJson, @debug.Debug)
+
+pub(all) struct CUSUMStream {
+  target : Double
+  allowance : Double
+  decision : Double
+  mut positive : Double
+  mut negative : Double
+  mut steps : Int
+} derive(ToJson, @debug.Debug)
+pub fn CUSUMStream::acknowledge(Self) -> Unit
+pub fn CUSUMStream::new(target~ : Double, allowance~ : Double, decision~ : Double) -> Self
+pub fn CUSUMStream::push(Self, Double) -> Bool
+pub fn CUSUMStream::score(Self) -> Double
 
 pub(all) struct Capability {
   mean : Double
@@ -159,10 +1104,28 @@ pub(all) struct Capability {
   out_of_spec_rate : Double
 } derive(ToJson, @debug.Debug)
 
+pub struct CapabilityExtended {
+  cp : Double
+  cpk : Double
+  cpu : Double
+  cpl : Double
+  ppm_upper : Double
+  ppm_lower : Double
+  yield_rate : Double
+  sigma_level : Double
+  capable : Bool
+} derive(ToJson, @debug.Debug)
+
 pub(all) enum CapabilityResult {
   CapabilityOk(Capability)
   CapabilityInvalidInput(message~ : String)
 } derive(@debug.Debug)
+
+pub(all) struct CategoryCount {
+  category : String
+  count : Int
+  proportion : Double
+} derive(ToJson, @debug.Debug)
 
 pub(all) struct ChartPoint {
   value : Double
@@ -176,6 +1139,31 @@ pub(all) enum ChartResult {
   ChartOk(ControlChart)
   ChartInvalidInput(message~ : String)
 } derive(@debug.Debug)
+
+pub(all) struct CleanIssue {
+  index : Int
+  code : String
+  message : String
+  original : Double?
+  replacement : Double?
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct CleanResult {
+  values : Array[Double]
+  original_count : Int
+  removed : Int
+  replaced : Int
+  issues : Array[CleanIssue]
+} derive(ToJson, @debug.Debug)
+
+pub struct ContractResult {
+  valid : Bool
+  row_count : Int
+  missing_fields : Array[String]
+  missing_rate : Double
+  duplicate_keys : Int
+  reasons : Array[String]
+} derive(ToJson, @debug.Debug)
 
 pub(all) struct ControlChart {
   kind : String
@@ -192,6 +1180,71 @@ pub fn ControlChart::u(Array[Int], Array[Int]) -> ChartResult
 pub fn ControlChart::xbar_r(Array[Array[Double]]) -> ChartResult
 pub fn ControlChart::xbar_s(Array[Array[Double]]) -> ChartResult
 
+pub(all) struct CountPoint {
+  index : Int
+  count : Int
+  center : Double
+  lower : Double
+  upper : Double
+  alarm : Bool
+} derive(ToJson, @debug.Debug)
+
+pub struct DashboardCard {
+  key : String
+  title : String
+  value : Double
+  target : Double
+  unit : String
+  trend : Int
+  status : String
+} derive(ToJson, @debug.Debug)
+
+pub struct DashboardSnapshot {
+  name : String
+  generated_at : String
+  cards : Array[DashboardCard]
+  mut alerts : Int
+  mut score : Double
+} derive(ToJson, @debug.Debug)
+pub fn DashboardSnapshot::add_card(Self, DashboardCard) -> Unit
+pub fn DashboardSnapshot::set_alerts(Self, Int) -> Unit
+pub fn DashboardSnapshot::set_score(Self, Double) -> Unit
+
+pub struct DataContract {
+  name : String
+  required_fields : Array[String]
+  minimum_rows : Int
+  maximum_missing_rate : Double
+  unique_key : String
+  version : String
+} derive(ToJson, @debug.Debug)
+
+pub struct DiagnosticResult {
+  sample_count : Int
+  mean : Double
+  deviation : Double
+  runs : Int
+  increasing_pairs : Int
+  decreasing_pairs : Int
+  change_index : Int
+  shift : Double
+  variance_ratio : Double
+  autocorrelation : Double
+  stable : Bool
+} derive(ToJson, @debug.Debug)
+
+pub struct DistributionSummary {
+  count : Int
+  mean : Double
+  deviation : Double
+  median : Double
+  mad : Double
+  skewness : Double
+  kurtosis : Double
+  normality_score : Double
+  approximately_normal : Bool
+} derive(ToJson, @debug.Debug)
+
 pub(all) struct DriftPoint {
   index : Int
   value : Double
@@ -199,10 +1252,77 @@ pub(all) struct DriftPoint {
   alarm : Bool
 } derive(ToJson, @debug.Debug)
 
+pub(all) struct EWMAStep {
+  value : Double
+  center : Double
+  alarm : Bool
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct EWMAStream {
+  lambda : Double
+  mut state : Double
+  center : Double
+  limit : Double
+  mut steps : Int
+} derive(ToJson, @debug.Debug)
+pub fn EWMAStream::new(lambda~ : Double, center~ : Double, limit~ : Double) -> Self
+pub fn EWMAStream::push(Self, Double) -> EWMAStep
+pub fn EWMAStream::reset(Self) -> Unit
+
+pub struct FailureMode {
+  id : String
+  process : String
+  cause : String
+  effect : String
+  severity : Int
+  occurrence : Int
+  detection : Int
+  owner : String
+  mitigation : String
+  closed : Bool
+} derive(ToJson, @debug.Debug)
+pub fn FailureMode::risk_level(Self) -> String
+pub fn FailureMode::rpn(Self) -> Int
+
+pub(all) struct ForecastResult {
+  strategy_name : String
+  horizon : Int
+  values : Array[Double]
+  baseline : Double
+  deviation : Double?
+  lower : Array[Double]
+  upper : Array[Double]
+} derive(ToJson, @debug.Debug)
+
+pub(all) enum ForecastStrategy {
+  LastValue
+  MeanValue
+  MovingAverage(Int)
+  TrendLine
+  ExponentialAverage(Double)
+} derive(Eq, ToJson, @debug.Debug)
+
 pub(all) struct Frequency {
   value : Int
   count : Int
   proportion : Double
+} derive(ToJson, @debug.Debug)
+
+pub struct GateDecision {
+  released : Bool
+  score : Double
+  blockers : Array[String]
+  recommendation : String
+} derive(ToJson, @debug.Debug)
+
+pub struct GaugeStudy {
+  readings : Array[Double]
+  reference : Double
+  repeatability : Double
+  bias : Double
+  resolution : Double
+  percent_tolerance : Double
+  adequate : Bool
 } derive(ToJson, @debug.Debug)
 
 pub(all) struct HistogramBin {
@@ -212,12 +1332,179 @@ pub(all) struct HistogramBin {
   proportion : Double
 } derive(ToJson, @debug.Debug)
 
+pub(all) struct LotFeature {
+  identity : LotIdentity
+  feature : String
+  values : Array[Double]
+  mut missing : Int
+  stations : Array[String]
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct LotFeatureSummary {
+  lot : String
+  feature : String
+  count : Int
+  missing : Int
+  mean : Double?
+  deviation : Double?
+  minimum : Double?
+  maximum : Double?
+  defect_rate : Double?
+  station_count : Int
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct LotIdentity {
+  lot : String
+  product : String
+  revision : String
+  line : String
+  shift : String
+  start_window : String
+  end_window : String
+} derive(ToJson, @debug.Debug)
+pub fn LotIdentity::new(lot~ : String, product~ : String, revision~ : String, line~ : String, shift~ : String, start_window~ : String, end_window~ : String) -> Self
+
+pub struct MaintenancePlan {
+  asset_id : String
+  interval_days : Int
+  last_service_day : Int
+  next_service_day : Int
+  runtime_hours : Double
+  runtime_limit : Double
+  open_actions : Int
+  status : String
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct MaintenanceRecord {
+  asset : String
+  event : String
+  timestamp : String
+  runtime_hours : Double
+  severity : Int
+  note : String
+} derive(ToJson, @debug.Debug)
+pub fn MaintenanceRecord::new(asset~ : String, event~ : String, timestamp~ : String, runtime_hours~ : Double, severity~ : Int, note~ : String) -> Self
+
+pub struct MaterialLot {
+  material_id : String
+  lot_id : String
+  quantity : Double
+  reserved : Double
+  lower_limit : Double
+  upper_limit : Double
+  status : String
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct MatrixValidation {
+  valid : Bool
+  rows : Int
+  columns : Int
+  issues : Array[String]
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct MeasurementEvent {
+  identity : LotIdentity
+  station : String
+  feature : String
+  value : Double?
+  sequence : Int
+  accepted : Bool
+} derive(ToJson, @debug.Debug)
+pub fn MeasurementEvent::new(identity~ : LotIdentity, station~ : String, feature~ : String, value~ : Double?, sequence~ : Int) -> Self
+pub fn MeasurementEvent::reject(Self) -> Self
+
+pub(all) struct MeasurementMatrix {
+  rows : Array[Array[Double]]
+  feature_names : Array[String]
+} derive(ToJson, @debug.Debug)
+pub fn MeasurementMatrix::new(rows~ : Array[Array[Double]], feature_names~ : Array[String]) -> Self
+pub fn MeasurementMatrix::validate(Self) -> MatrixValidation
+
+pub(all) struct MeasurementRing {
+  capacity : Int
+  values : Array[Double]
+  mut next : Int
+} derive(ToJson, @debug.Debug)
+pub fn MeasurementRing::deviation(Self) -> Double?
+pub fn MeasurementRing::last(Self) -> Double?
+pub fn MeasurementRing::length(Self) -> Int
+pub fn MeasurementRing::mean(Self) -> Double?
+pub fn MeasurementRing::new(Int) -> Self
+pub fn MeasurementRing::ordered(Self) -> Array[Double]
+pub fn MeasurementRing::push(Self, Double) -> Unit
+
+pub struct MetricCatalog {
+  metrics : Array[QualityMetric]
+  version : String
+} derive(ToJson, @debug.Debug)
+pub fn MetricCatalog::add(Self, QualityMetric) -> Unit
+
+pub(all) struct MultivariateAlarm {
+  row : Int
+  score : Double
+  threshold : Double
+  alarm : Bool
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct ParetoRow {
+  category : String
+  count : Int
+  proportion : Double
+  cumulative : Double
+} derive(ToJson, @debug.Debug)
+
+pub struct PolicyDecision {
+  accepted : Bool
+  warning : Bool
+  critical : Bool
+  reason : String
+  score : Double
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct ProcessScenario {
+  name : String
+  center : Double
+  deviation : Double
+  lower : Double?
+  upper : Double?
+  drift : Double
+  outlier_probability : Double
+  seed : Int
+} derive(ToJson, @debug.Debug)
+pub fn ProcessScenario::new(name~ : String, center~ : Double, deviation~ : Double, lower~ : Double?, upper~ : Double?, drift~ : Double, outlier_probability~ : Double, seed~ : Int) -> Self
+
+pub struct ProductionStage {
+  name : String
+  duration_hours : Double
+  required_station : String
+  sequence : Int
+  completed : Bool
+} derive(ToJson, @debug.Debug)
+
 pub(all) struct QualityAlert {
   severity : AlertSeverity
   code : String
   message : String
   index : Int
   value : Double?
+} derive(ToJson, @debug.Debug)
+
+pub struct QualityMetric {
+  key : String
+  value : Double
+  unit : String
+  target : Double
+  lower_is_better : Bool
+} derive(ToJson, @debug.Debug)
+
+pub struct QualityPolicy {
+  name : String
+  lower_limit : Double
+  upper_limit : Double
+  warning_margin : Double
+  critical_margin : Double
+  required_samples : Int
+  enabled : Bool
 } derive(ToJson, @debug.Debug)
 
 pub(all) struct QualityReport {
@@ -234,10 +1521,66 @@ pub(all) struct QualityWindow {
 } derive(ToJson, @debug.Debug)
 pub fn QualityWindow::new(id~ : String, values~ : Array[Double], specification~ : Specification?) -> Self
 
+pub struct QualityWorkOrder {
+  order_id : String
+  lot_id : String
+  title : String
+  owner : String
+  priority : Int
+  due_day : Int
+  status : String
+  estimated_hours : Double
+  actual_hours : Double
+  evidence_count : Int
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct ReleaseDecision {
+  released : Bool
+  reason_codes : Array[String]
+  measured_features : Int
+  rejected_events : Int
+  missing_measurements : Int
+} derive(ToJson, @debug.Debug)
+
+pub struct ReleaseGate {
+  name : String
+  required_checks : Int
+  passed_checks : Int
+  open_alerts : Int
+  critical_alerts : Int
+  evidence_count : Int
+  minimum_score : Double
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct ReliabilitySummary {
+  asset : String
+  events : Int
+  runtime_hours : Double
+  mean_between_events : Double?
+  severe_events : Int
+  risk_score : Double
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct ReportDocument {
+  title : String
+  generated_at : String
+  sections : Array[ReportSection]
+  warnings : Array[String]
+} derive(ToJson, @debug.Debug)
+pub fn ReportDocument::add_section(Self, title~ : String, lines~ : Array[String]) -> Unit
+pub fn ReportDocument::new(title~ : String, generated_at~ : String) -> Self
+pub fn ReportDocument::to_markdown(Self) -> String
+pub fn ReportDocument::warn(Self, String) -> Unit
+
 pub(all) enum ReportResult {
   ReportOk(QualityReport)
   ReportInvalidInput(message~ : String)
 } derive(@debug.Debug)
+
+pub(all) struct ReportSection {
+  title : String
+  lines : Array[String]
+} derive(ToJson, @debug.Debug)
 
 pub(all) struct RuleViolation {
   rule : Int
@@ -245,6 +1588,28 @@ pub(all) struct RuleViolation {
   indices : Array[Int]
   message : String
 } derive(ToJson, @debug.Debug)
+
+pub struct SampleResult {
+  indices : Array[Int]
+  expected_fraction : Double
+  valid : Bool
+} derive(ToJson, @debug.Debug)
+
+pub(all) enum SamplingMethod {
+  SimpleRandom
+  Systematic
+  Stratified
+  Cluster
+} derive(Eq, @debug.Debug)
+
+pub struct SamplingPlan {
+  sampling_method : SamplingMethod
+  population : Int
+  requested : Int
+  seed : Int
+  strata : Array[Int]
+} derive(@debug.Debug)
+pub fn SamplingPlan::with_strata(Self, Array[Int]) -> Self
 
 pub(all) struct Scorecard {
   observations : Int
@@ -256,11 +1621,107 @@ pub(all) struct Scorecard {
   deviation : Double?
 } derive(ToJson, @debug.Debug)
 
+pub(all) struct SimulatedPoint {
+  index : Int
+  value : Double
+  center : Double
+  cause : String
+  in_spec : Bool
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct SimulationSummary {
+  scenario : String
+  points : Int
+  mean : Double?
+  deviation : Double?
+  defects : Int
+  alarms : Int
+} derive(ToJson, @debug.Debug)
+
 pub(all) struct Specification {
   lower : Double
   upper : Double
 } derive(ToJson, @debug.Debug)
 pub fn Specification::new(lower~ : Double, upper~ : Double) -> Self
+
+pub struct StationCapacity {
+  station : String
+  available_hours : Double
+  planned_hours : Double
+  operators : Int
+  utilization : Double
+  overloaded : Bool
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct StationComparison {
+  station : String
+  count : Int
+  mean : Double?
+  deviation : Double?
+  delta_from_lot : Double?
+  alarm : Bool
+} derive(ToJson, @debug.Debug)
+
+pub(all) struct StreamAccumulator {
+  mut count : Int
+  mut sum : Double
+  mut sum_squared : Double
+  mut minimum : Double?
+  mut maximum : Double?
+  mut last : Double?
+  mut missing : Int
+  mut out_of_spec : Int
+  lower : Double?
+  upper : Double?
+} derive(ToJson, @debug.Debug)
+pub fn StreamAccumulator::defect_rate(Self) -> Double?
+pub fn StreamAccumulator::deviation(Self) -> Double?
+pub fn StreamAccumulator::mean(Self) -> Double?
+pub fn StreamAccumulator::merge(Self, Self) -> Unit
+pub fn StreamAccumulator::new(lower~ : Double?, upper~ : Double?) -> Self
+pub fn StreamAccumulator::push(Self, Double?) -> Unit
+pub fn StreamAccumulator::push_all(Self, Array[Double?]) -> Unit
+pub fn StreamAccumulator::snapshot(Self) -> StreamSnapshot
+pub fn StreamAccumulator::span(Self) -> Double?
+pub fn StreamAccumulator::variance(Self) -> Double?
+
+pub(all) struct StreamMonitor {
+  policy : StreamPolicy
+  accumulator : StreamAccumulator
+  recent : MeasurementRing
+  ewma : EWMAStream
+  cusum : CUSUMStream
+} derive(ToJson, @debug.Debug)
+pub fn StreamMonitor::acknowledge(Self) -> Unit
+pub fn StreamMonitor::new(policy~ : StreamPolicy, center~ : Double) -> Self
+pub fn StreamMonitor::push(Self, Double?) -> Bool
+pub fn StreamMonitor::recent_chart(Self) -> ChartResult
+pub fn StreamMonitor::snapshot(Self) -> StreamSnapshot
+
+pub(all) struct StreamPolicy {
+  lower : Double?
+  upper : Double?
+  ring_capacity : Int
+  ewma_lambda : Double
+  ewma_limit : Double
+  cusum_allowance : Double
+  cusum_decision : Double
+} derive(ToJson, @debug.Debug)
+pub fn StreamPolicy::standard(lower~ : Double?, upper~ : Double?) -> Self
+pub fn StreamPolicy::with_capacity(Self, Int) -> Self
+pub fn StreamPolicy::with_cusum(Self, Double, Double) -> Self
+pub fn StreamPolicy::with_ewma(Self, Double, Double) -> Self
+
+pub(all) struct StreamSnapshot {
+  count : Int
+  missing : Int
+  mean : Double?
+  deviation : Double?
+  minimum : Double?
+  maximum : Double?
+  defect_rate : Double?
+  last : Double?
+} derive(ToJson, @debug.Debug)
 
 pub(all) struct Subgroup {
   values : Array[Double]
@@ -291,10 +1752,38 @@ pub(all) enum SummaryResult {
   InvalidInput(message~ : String)
 } derive(@debug.Debug)
 
+pub(all) struct ToolLifePoint {
+  tool : String
+  runtime_hours : Double
+  wear : Double
+  threshold : Double
+  exceeded : Bool
+} derive(ToJson, @debug.Debug)
+pub fn ToolLifePoint::new(tool~ : String, runtime_hours~ : Double, wear~ : Double, threshold~ : Double) -> Self
+
+pub struct TraceabilityResult {
+  event_count : Int
+  unique_lots : Int
+  missing_evidence : Int
+  failed_events : Int
+  chronological : Bool
+  complete : Bool
+} derive(ToJson, @debug.Debug)
+
 pub(all) struct Trend {
   slope : Double
   intercept : Double
   r_squared : Double
+} derive(ToJson, @debug.Debug)
+
+pub struct TrendAlert {
+  metric : String
+  direction : Int
+  slope : Double
+  confidence : Double
+  start_index : Int
+  end_index : Int
+  message : String
 } derive(ToJson, @debug.Debug)
 
 pub(all) struct ValidationIssue {
@@ -304,5 +1793,6 @@ pub(all) struct ValidationIssue {
 } derive(ToJson, @debug.Debug)
 
 // Type aliases
+pub type MaybeMeasurement = Double?
 
 // Traits
