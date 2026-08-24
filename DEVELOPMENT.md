@@ -1,7 +1,33 @@
-# Development notes
+# Development guide
 
-`moonbitSPC` 采用“先定义可观察结果，再实现计算”的开发方式。早期测试先固定空输入、控制限、异常规则和能力指数的行为，再按包内职责拆分实现。这样做的目的不是追求复杂框架，而是让制造领域使用者能够从测试和结构化返回值复核每个结论。
+`moonbitSPC` follows a contract-first workflow: observable results are fixed in
+tests before implementation details are expanded. The package is deliberately
+dependency-light so that manufacturing applications can review the formulas,
+data validation, and traceability fields without depending on a database,
+plotting engine, or factory protocol.
 
-项目使用 AI 工具辅助检索 MoonBit 语法、整理边界案例和检查仓库清单；算法假设、公式、测试数据和最终取舍由项目作者逐项复核。没有复制已有 MoonBit SPC 项目，也没有引入无法确认许可证的实现。
+## Local checks
 
-当前取舍是先提供稳定的纯计算内核，不把 CSV、数据库和绘图强行塞进核心包。下一阶段应以真实生产样本和跨工序数据验证控制限，再分别增加适配器和流式接口。
+```text
+moon fmt --check
+moon check --deny-warn
+moon check --target all --deny-warn
+moon test --deny-warn
+moon test --target native --deny-warn
+moon run cmd/demo
+moon run cmd/benchmark
+```
+
+## Design boundaries
+
+The root package owns deterministic calculations and application-facing result
+types. File, database, network, and visualization adapters belong in consuming
+applications. New algorithms should document their statistical assumptions,
+validate domain inputs, and include empty, singleton, boundary, invalid, and
+out-of-spec cases in a dedicated `*_test.mbt` file.
+
+## Contributions
+
+Keep public APIs small and typed, preserve wasm-gc and native compatibility,
+run the complete local check sequence before opening a change, and update the
+changelog and benchmark record when externally visible behavior changes.

@@ -35,12 +35,7 @@ pub fn sampling_plan(
 ///|
 /// Return the supported strategies for configuration UIs.
 pub fn supported_sampling_methods() -> Array[SamplingMethod] {
-  [
-    SamplingMethod::SimpleRandom,
-    SamplingMethod::Systematic,
-    SamplingMethod::Stratified,
-    SamplingMethod::Cluster,
-  ]
+  [SimpleRandom, Systematic, Stratified, Cluster]
 }
 
 ///|

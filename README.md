@@ -8,6 +8,8 @@
 - Control charts: X-bar/R, X-bar/S, I-MR, P, NP, C, U, EWMA, and CUSUM.
 - Quality rules: Western Electric rules 1–4, IQR outliers, run length, sign changes, trend and drift scores.
 - Process capability: Cp, Cpk, Pp, Ppk, defect rate, specification validation, and pooled deviation.
+- Production operations: OEE, production yield, quality cost, KPI trends, threshold alerts, maintenance planning, and material quality.
+- QMS and traceability: deviations, corrective actions, evidence review, batch genealogy, release checklists, and deterministic process simulation.
 - Production pipeline helpers: traceable subgroups, input validation, window scorecards, structured alerts, deterministic simulation samples, and forecast baselines.
 - Portable output: public data structures with `Debug`/`ToJson` support; no database, plotting, or factory-protocol dependency.
 
@@ -48,8 +50,13 @@ The root package is organized by responsibility:
 | Data model | `types.mbt`, `summary.mbt` | Traceability dimensions and descriptive summaries |
 | Charts | `charts.mbt`, `extended.mbt` | Classical, EWMA, and CUSUM chart points |
 | Rules | `rules.mbt`, `advanced.mbt`, `analytics.mbt` | Western Electric and robust/run diagnostics |
-| Capability | `capability.mbt` | Specification-based process indices |
-| Pipeline | `pipeline.mbt`, `report.mbt` | Window evaluation, alerts, and reports |
+| Capability and forecasting | `capability.mbt`, `capability_extended.mbt`, `forecasting.mbt` | Process indices, yield, bands, and backtests |
+| Data engineering | `cleaning.mbt`, `multivariate.mbt`, `sampling_design.mbt`, `data_contracts.mbt` | Preparation, matrix checks, sampling plans, and schema contracts |
+| Streaming and batches | `streaming.mbt`, `batch_engine.mbt`, `simulation_engine.mbt` | Online monitoring, lot aggregation, and deterministic scenarios |
+| Operations | `maintenance*.mbt`, `measurement_system.mbt`, `process_planning.mbt`, `inventory_quality.mbt`, `production_kpis.mbt` | Asset, gauge, capacity, material, OEE, and cost workflows |
+| Governance and delivery | `compliance.mbt`, `failure_modes.mbt`, `quality_policy.mbt`, `release_gate.mbt`, `qms_workflow.mbt` | Deviations, CAPA, audit evidence, policy decisions, and release gates |
+| Traceability | `traceability.mbt`, `batch_engine.mbt` | Event lineage, parent-child lots, process completeness, and release checklists |
+| Reporting | `report*.mbt`, `dashboard_views.mbt`, `export_views.mbt` | Structured reports, dashboard cards, Markdown, and CSV output |
 
 All algorithms are deterministic and operate on owned arrays. Invalid domain inputs return explicit `Option` or result values rather than silently producing a chart.
 

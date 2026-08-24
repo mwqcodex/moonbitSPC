@@ -14,8 +14,8 @@ fn main {
       [group],
       specification=@spc.Specification::new(lower=9.0, upper=11.0),
     ) {
-    @spc.ReportOk(report) =>
+    ReportOk(report) =>
       println("mean=\{report.summary.mean}, count=\{report.summary.count}")
-    @spc.ReportInvalidInput(message~) => println("invalid input: \{message}")
+    ReportInvalidInput(message~) => println("invalid input: \{message}")
   }
 }

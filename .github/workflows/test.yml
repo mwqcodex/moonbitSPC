@@ -46,6 +46,14 @@ jobs:
       - name: Check MoonBit project
         run: |
           moon version
+          moonc -v
+          compiler_version="$(moonc -v | sed -n 's/^v\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*/\1/p')"
+          test -n "$compiler_version"
+          IFS=. read -r major minor patch <<< "$compiler_version"
+          if [ "$major" -lt 0 ] || { [ "$major" -eq 0 ] && [ "$minor" -lt 10 ]; } || { [ "$major" -eq 0 ] && [ "$minor" -eq 10 ] && [ "$patch" -lt 9 ]; }; then
+            echo "MoonBit compiler $compiler_version is below the required v0.10.9"
+            exit 1
+          fi
           moon fmt --check
           moon check --deny-warn
           moon check --target all --deny-warn
